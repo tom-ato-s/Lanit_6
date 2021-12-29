@@ -24,8 +24,6 @@
 hs_err_pid*
 !/LanitHW1.iml
 
-*.class
-
 *.iml
 *.xml
 
@@ -39,8 +37,7 @@ out/
 /.idea/
 /target/
 /src/main/resources/my.properties
-/.idea/
 *.iml
-/.idea/
 /src/main/resources/config.properties
-/src/main/resources/user.properties.properties
+/src/main/resources/user.properties
+
