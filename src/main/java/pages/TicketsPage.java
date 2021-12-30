@@ -1,6 +1,6 @@
 package pages;
 
-import models.Ticket;
+import model.Ticket;
 import org.openqa.selenium.By;
 
 /** Страница со списком тикетов */
