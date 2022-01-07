@@ -62,6 +62,7 @@ public class CreateTicketPage extends HelpdeskBasePage {
     /** Заполнение поля "Queue"*/
     public void setQueue(String queueValue) {
         Select queueSelect = new Select(inputQueue);
+     //   queueSelect.selectByValue();
         if(queueValue.equals("Django Helpdesk"))
             queueSelect.getOptions().get(1).click();
         if(queueValue.equals("Some Product"))
