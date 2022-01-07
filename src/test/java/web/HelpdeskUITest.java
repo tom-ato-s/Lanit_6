@@ -1,10 +1,10 @@
 package web;
 
 import elements.MainMenu;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Step;
 import model.Ticket;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+@Epic("Тестирование сайта")
 public class HelpdeskUITest {
 
     private WebDriver driver;
@@ -39,11 +40,11 @@ public class HelpdeskUITest {
 
     @Test
     public void createTicketTest() {
-        ticket = buildNewTicket();
+
         // todo: открыть главную страницу
         driver.get(System.getProperty("site.url"));
         // Заполняем объект класс Ticket необходимыми тестовыми данными
-        WebElement newTicketBtn = driver.findElement(By.xpath(".//a[@href='/tickets/submit/']"));
+        ticket = buildNewTicket();
         // todo: создать объект главной страницы и выполнить шаги по созданию тикета
         MainMenu mainMenu = new MainMenu(driver); // создает объекта меню
         mainMenu.newTicket();
@@ -57,14 +58,16 @@ public class HelpdeskUITest {
         TicketsPage ticketsPage = new TicketsPage();
         // todo: найти созданный тикет и проверить поля
         ticketsPage.openTicket(ticket); //найти и открыть тикет
-
         ticketOfPage = buildNewTicket(ticketPage); // создание объекта тикет из данных окна TicketPage
+
         Assert.assertEquals(ticket.equals(ticketOfPage), true, "Объекты эквивалентны"); //сравнение тикетов: созданного в начале и полученного из окна
 
         // Закрываем текущее окно браузера
         driver.close();
     }
 
+    @Step("Создание и заполнение объекта Ticket, созданного изначально вручную")
+    /**
     /**
      * Создаём и заполняем объект тикета
      *
@@ -95,6 +98,13 @@ public class HelpdeskUITest {
         }
         return  buffer.toString();
     }
+
+    @Step("Создание и заполение объекта Ticket из страницы сайта")
+    /**
+     * Создаём и заполняем объект тикета
+     *
+     * @return заполненный объект тикета
+     */
     protected Ticket buildNewTicket(TicketPage ticketPage) {
         Ticket ticketOfPage = new Ticket();
         ticketOfPage.setTitle(ticketPage.getNameTitle());
