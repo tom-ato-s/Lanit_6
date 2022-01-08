@@ -5,7 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static allure.MyTestListener.saveScreenshotPNG;
+
+
 /** Страница авторизации */
+
 public class LoginPage extends HelpdeskBasePage {
 
     // todo: элементы страницы
@@ -33,7 +37,10 @@ public class LoginPage extends HelpdeskBasePage {
         // todo: заполнить поля и нажать кнопку авторизации
         setLogin(user);
         setPassword(password);
+
+        saveScreenshotPNG(driver);// скриншот
         clickLoginBtn();
+        saveScreenshotPNG(driver);// скриншот
     }
 
     // todo: методы работы с элементами
@@ -41,7 +48,7 @@ public class LoginPage extends HelpdeskBasePage {
     private void setLogin(String login) {
         this.loginName.sendKeys(login);
     }
-    @Step ("Ввод почты, значение {password}")
+    @Step ("Ввод пароля, значение {password}")
     private void setPassword(String password) {
         this.password.sendKeys(password);
     }

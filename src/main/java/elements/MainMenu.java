@@ -5,6 +5,9 @@ import model.Ticket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.annotations.Listeners;
+
+import static allure.MyTestListener.saveScreenshotPNG;
 
 /** Элемент главного меню */
 public class MainMenu {
@@ -28,6 +31,7 @@ public class MainMenu {
     public void newTicket() {
         // todo: нажать кнопку создания нового тикета
         newTicketBtn.click();
+        saveScreenshotPNG(driver); //скриншот
     }
 
     public void logIn() {
@@ -38,6 +42,7 @@ public class MainMenu {
     public void searchTicket(Ticket ticket) {
         setSearch(ticket.getTitle())
                 .search();
+        saveScreenshotPNG(driver); //скриншот
     }
 
     /* Если после вызова void метода, может потребоваться вызов другого метода этого же класса,
@@ -47,6 +52,7 @@ public class MainMenu {
     public MainMenu setSearch(String text) {
         // todo: ввести значение в поле поиска
         searchText.sendKeys(text);
+        saveScreenshotPNG(driver); //скриншот
         return this;
     }
 

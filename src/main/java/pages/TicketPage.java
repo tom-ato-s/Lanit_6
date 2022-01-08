@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static allure.MyTestListener.saveScreenshotPNG;
+
 /** Страница отдельного тикета */
 public class TicketPage extends HelpdeskBasePage {
 
@@ -92,7 +94,9 @@ public class TicketPage extends HelpdeskBasePage {
     @Step ("Зажатие кнопки \"Login In\" - переход в раздел авторизации")
     /** Зажатие кнопки "Login In" */
     public void GoTologin() {
+        saveScreenshotPNG(driver);// скриншот
         buttonGoTologin.click();
+        saveScreenshotPNG(driver);// скриншот
     }
 
     /**

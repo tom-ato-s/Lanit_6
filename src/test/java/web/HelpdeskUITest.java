@@ -1,5 +1,6 @@
 package web;
 
+import allure.MyTestListener;
 import elements.MainMenu;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
@@ -9,12 +10,15 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
 
 import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import static allure.MyTestListener.saveScreenshotPNG;
 
 @Epic("Тестирование сайта")
 public class HelpdeskUITest {
@@ -60,14 +64,13 @@ public class HelpdeskUITest {
         ticketsPage.openTicket(ticket); //найти и открыть тикет
         ticketOfPage = buildNewTicket(ticketPage); // создание объекта тикет из данных окна TicketPage
 
-        Assert.assertEquals(ticket.equals(ticketOfPage), true, "Объекты эквивалентны"); //сравнение тикетов: созданного в начале и полученного из окна
+        Assert.assertTrue(ticket.equals(ticketOfPage), "Объекты эквивалентны"); //сравнение тикетов: созданного в начале и полученного из окна
 
         // Закрываем текущее окно браузера
         driver.close();
     }
 
     @Step("Создание и заполнение объекта Ticket, созданного изначально вручную")
-    /**
     /**
      * Создаём и заполняем объект тикета
      *
@@ -114,7 +117,6 @@ public class HelpdeskUITest {
         ticketOfPage.setMailValue(ticketPage.getEmail());
         return ticket;
     }
-
 
     @AfterTest
     public void close() {

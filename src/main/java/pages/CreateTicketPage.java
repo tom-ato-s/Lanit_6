@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
+import static allure.MyTestListener.saveScreenshotPNG;
+
 /** Страница создания тикета */
 public class CreateTicketPage extends HelpdeskBasePage {
 
@@ -49,6 +51,8 @@ public class CreateTicketPage extends HelpdeskBasePage {
         setDescription(ticket.getDescriptionValue());
         setPriority(ticket.getPriorityValue());
         setMail(ticket.getMailValue());
+
+        saveScreenshotPNG(driver);// скриншот
         createTicket();
     }
     @Step("Заполнение поля \"Summary of the problem\", значение: {text}")
