@@ -92,7 +92,6 @@ public class TicketPage extends HelpdeskBasePage {
     }
 
     @Step ("Зажатие кнопки \"Login In\" - переход в раздел авторизации")
-    /** Зажатие кнопки "Login In" */
     public void GoTologin() {
         saveScreenshotPNG(driver);// скриншот
         buttonGoTologin.click();

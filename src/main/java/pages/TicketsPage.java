@@ -14,7 +14,6 @@ public class TicketsPage extends HelpdeskBasePage {
     public TicketsPage() {
     }
 
-    /** Ищем строку с тикетом и нажимаем на нее */
     @Step("Ищем строку с тикетом, значение {ticket}, и нажимаем на нее")
     public void openTicket(Ticket ticket) {
         // todo: найти и открыть тикет

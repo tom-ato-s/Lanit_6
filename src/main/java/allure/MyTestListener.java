@@ -6,7 +6,6 @@ package allure;
         import org.testng.ITestListener;
         import org.testng.ITestResult;
         import ru.yandex.qatools.ashot.AShot;
-
         import javax.imageio.ImageIO;
         import java.awt.image.BufferedImage;
         import java.io.ByteArrayOutputStream;
@@ -21,8 +20,7 @@ public class MyTestListener implements ITestListener {
         try {
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             ImageIO.write(image, "png", stream);
-            byte[] bytes = stream.toByteArray();
-            return bytes;
+            return stream.toByteArray();
         } catch (IOException e) {
             e.printStackTrace();
             return null;

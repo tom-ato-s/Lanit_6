@@ -1,6 +1,5 @@
 package web;
 
-import allure.MyTestListener;
 import elements.MainMenu;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
@@ -10,15 +9,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
-
 import java.io.IOException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
-import static allure.MyTestListener.saveScreenshotPNG;
 
 @Epic("Тестирование сайта")
 public class HelpdeskUITest {
@@ -55,7 +50,7 @@ public class HelpdeskUITest {
         CreateTicketPage createTicketPage = new CreateTicketPage(); //создание объекта для создания тикета
         createTicketPage.createTicket(ticket); // заполнение полей станицы CreateTicket и нажатие кнопки сохранения тикета
         TicketPage ticketPage = new TicketPage(); // создали страницу объекта Тикета
-        ticketPage.GoTologin(); // нажатие кнопики Логированния
+        ticketPage.GoTologin(); // нажатие кнопки Логирования
         // todo: перейти к странице авторизации и выполнить вход
         LoginPage loginPage = new LoginPage();
         loginPage.login(System.getProperty("user"),System.getProperty("password") );
@@ -63,7 +58,6 @@ public class HelpdeskUITest {
         // todo: найти созданный тикет и проверить поля
         ticketsPage.openTicket(ticket); //найти и открыть тикет
         ticketOfPage = buildNewTicket(ticketPage); // создание объекта тикет из данных окна TicketPage
-
         Assert.assertTrue(ticket.equals(ticketOfPage), "Объекты эквивалентны"); //сравнение тикетов: созданного в начале и полученного из окна
 
         // Закрываем текущее окно браузера
@@ -78,7 +72,6 @@ public class HelpdeskUITest {
      */
     protected Ticket buildNewTicket() {
         Ticket ticket = new Ticket();
-
         ticket.setTitle(randomTitle());
         // todo: заполнить остальные необходимые поля тикета
         ticket.setQueueValue("Django Helpdesk");
@@ -94,6 +87,7 @@ public class HelpdeskUITest {
         int targetStringLength = 10;
         Random random = new Random();
         StringBuilder buffer = new StringBuilder(targetStringLength);
+
         for (int i = 0; i < targetStringLength; i++) {
             int randomLimitedInt = leftLimit + (int)
                     (random.nextFloat() * (rightLimit - leftLimit + 1));

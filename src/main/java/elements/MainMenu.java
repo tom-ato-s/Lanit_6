@@ -5,8 +5,6 @@ import model.Ticket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.Listeners;
-
 import static allure.MyTestListener.saveScreenshotPNG;
 
 /** Элемент главного меню */
