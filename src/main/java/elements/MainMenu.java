@@ -1,9 +1,11 @@
 package elements;
 
+import io.qameta.allure.Step;
 import model.Ticket;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import static allure.MyTestListener.saveScreenshotPNG;
 
 /** Элемент главного меню */
 public class MainMenu {
@@ -23,10 +25,11 @@ public class MainMenu {
         newTicketBtn= driver.findElement(By.xpath (".//a[@href='/tickets/submit/']"));
         searchText = driver.findElement(By.xpath("//input[@name='ticket']"));
     }
-
+    @Step("Нажатие кнопки NewTicket")
     public void newTicket() {
         // todo: нажать кнопку создания нового тикета
         newTicketBtn.click();
+        saveScreenshotPNG(driver); //скриншот
     }
 
     public void logIn() {
@@ -37,16 +40,21 @@ public class MainMenu {
     public void searchTicket(Ticket ticket) {
         setSearch(ticket.getTitle())
                 .search();
+        saveScreenshotPNG(driver); //скриншот
     }
 
     /* Если после вызова void метода, может потребоваться вызов другого метода этого же класса,
         то можно вернуть сам класс и вызвать следующий метод через точку. */
+
+    @Step ("Ввести значения в поле поиска")
     public MainMenu setSearch(String text) {
         // todo: ввести значение в поле поиска
         searchText.sendKeys(text);
+        saveScreenshotPNG(driver); //скриншот
         return this;
     }
 
+    @Step ("Нажать кнопку поиска")
     public void search() {
         // todo: нажать кнопку поиска
         searchBtn.click();

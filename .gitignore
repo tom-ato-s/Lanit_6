@@ -33,10 +33,6 @@ out/
 /.target/
 /.idea/
 /target/
-
-/.idea/
-/target/
 /src/main/resources/my.properties
-*.iml
 /src/main/resources/user.properties
-
+/.allure/

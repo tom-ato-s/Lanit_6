@@ -1,10 +1,13 @@
 package pages;
 
+import io.qameta.allure.Step;
 import model.Ticket;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+
+import static allure.MyTestListener.saveScreenshotPNG;
 
 /** Страница создания тикета */
 public class CreateTicketPage extends HelpdeskBasePage {
@@ -35,13 +38,12 @@ public class CreateTicketPage extends HelpdeskBasePage {
     @FindBy(xpath = "//input[@class='form-control-file']")
     private WebElement inputAttachFile;
 
-
     public CreateTicketPage() {
         // Необходимо инициализировать элементы класса, лучше всего это делать в конструкторе
         PageFactory.initElements(driver, this);
     }
 
-    /** Создание тикета */
+    @Step("Создание тикета, значение: {ticket}")
     public void createTicket(Ticket ticket) {
         setProblemTitle(ticket.getTitle());
         // todo: заполнение остальных полей
@@ -49,47 +51,47 @@ public class CreateTicketPage extends HelpdeskBasePage {
         setDescription(ticket.getDescriptionValue());
         setPriority(ticket.getPriorityValue());
         setMail(ticket.getMailValue());
+
+        saveScreenshotPNG(driver);// скриншот
         createTicket();
     }
 
-    /** Заполнение поля "Summary of the problem" */
+    @Step("Заполнение поля \"Summary of the problem\", значение: {text}")
     public void setProblemTitle(String text) {
         // todo: заполнить поле\
         inputProblemTitle.sendKeys(text);
     }
 
     // todo: методы заполнения остальных полей
-    /** Заполнение поля "Queue"*/
+    @Step("Заполнение поля \"Queue\", значение: {queueValue}")
     public void setQueue(String queueValue) {
         Select queueSelect = new Select(inputQueue);
         if(queueValue.equals("Django Helpdesk"))
-            queueSelect.getOptions().get(1).click();
+            queueSelect.selectByValue("1");
         if(queueValue.equals("Some Product"))
-            queueSelect.getOptions().get(2).click();
+            queueSelect.selectByValue("2");
     }
 
-    /** Заполнение поля "Description of your issue" */
+    @Step("Заполнение поля \"Description of your issue\", значение: {descriptionValue}")
     public void setDescription(String descriptionValue) {
         // todo: заполнить поле\
         inputDescription.sendKeys(descriptionValue);
     }
 
-    /** Заполнение поля "Priority"*/
+    @Step("Заполнение поля \"Priority\", значение: {priorityValue}")
     public void setPriority(int priorityValue) {
         Select prioritySelect = new Select(inputPriority);
         prioritySelect.getOptions().get(priorityValue).click();
     }
 
-    /** Заполнение поля "Your E-Mail Address" */
+    @Step("Заполнение поля \"Your E-Mail Address\", значение: {mailValue}")
     public void setMail(String mailValue) {
         // todo: заполнить поле\
         inputMail.sendKeys(mailValue);
     }
-
-    /** Зажатие кнопки "Submit Ticket" */
+    @Step("Зажатие кнопки \"Submit Ticket\"")
     public void createTicket() {
         // todo: нажать кнопку создания задания
         buttonSubmitTicket.click();
     }
-
 }
